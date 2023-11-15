@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        
+        h1 {text-align: center;}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZAIOLO</title>
+    
+    <link rel="stylesheet" href="greek.css">
+</head>
+
+<body>
+    <section class="header">
+        <div class=" container">
+            <div class="navbar">
+                <div class = "logo">
+                    <img src="image/logo1.png" width="105px">
+                </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>   
+                    <li><a href="abount.html">About</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html">
+                <img src="image/cartwhite.png" width="25px" height="25px">
+            </a>
+
+                
+            </div>
+        </div>
+
+        <div class="center">
+        <img src="salad/GREEK.png" width="350px" >
+        </div>
+
+        
+      
+        <h1 class="page-title">Greek Salad</h1>
+        <h1 class="descrip">Drizzle your Greek Salad with our house-made oregano-infused dressing. 
+            A fragrant blend of olive oil, lemon, and aromatic oregano, this dressing is 
+            the final touch that ties together the medley of flavors, promising a 
+            burst of Mediterranean sunshine in every bite.</h1>
+
+
+        <h1 class="add">Add on</h1><div class="add-on">
+            <input type="checkbox" id="extra" data-price="35">
+            <label for="extra"> + Chicken                                    +35</label><br>
+
+            <input type="checkbox" id="extra1" data-price="50">
+            <label for="extra1"> + Shrimp                                     +50</label><br>
+
+            <input type="checkbox" id="extra2" data-price="25">
+            <label for="extra2"> + Mozzarella Cheese                          +25</label><br>
+
+            <input type="checkbox" id="extra3" data-price="20">
+            <label for="extra3"> + Mushrooms                                  +20</label><br>
+
+            <input type="checkbox" id="extra4" data-price="35">
+            <label for="extra4"> + Sausage                                    +35</label><br>
+        </div>
+
+
+
+        <h1 class="quan">Quantity</h1>
+
+
+
+        <div class="quantity-container">
+            <button onclick="decreaseQuantity() " id="decrement" >-</button>
+            <input type="text" id="quantity" class="quantity-input" value="1" readonly>
+            <button onclick="increaseQuantity()" id="increment">+</button>
+        </div>
+
+
+
+        <h1 class="total-price">Total Price: <span id="total-price">199</span>฿</h1>
+
+
+
+        <div class="cart-container">
+            <form class="cart-form">
+                
+                
+                <div class="button-container">
+                    <button class="cart-button">Add to cart</button>
+        </div>
+
+
+        <script>
+            let quantityInput = document.getElementById('quantity');
+            let totalPriceElement = document.getElementById('total-price');
+            let basePrice = 199;
+            let currentQuantity = 1;
+        
+            // Add event listeners to all checkboxes
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotalPrice);
+            });
+        
+            function increaseQuantity() {
+                currentQuantity++;
+                updateQuantity();
+            }
+        
+            function decreaseQuantity() {
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    updateQuantity();
+                }
+            }
+        
+            function updateQuantity() {
+                quantityInput.value = currentQuantity;
+                updateTotalPrice();
+            }
+        
+            function updateTotalPrice() {
+                let selectedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
+                let addonPrices = Array.from(selectedAddons).map(checkbox => parseInt(checkbox.dataset.price));
+                let totalAddonsPrice = addonPrices.reduce((total, price) => total + price, 0);
+        
+                let total = basePrice * currentQuantity + totalAddonsPrice;
+                totalPriceElement.textContent = total;
+            }
+            
+        </script>
+        
+        
+        
+        
+    </section>
+</body>
+</html>
